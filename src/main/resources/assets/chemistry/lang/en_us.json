@@ -1,0 +1,24 @@
+{
+  "item.chemistry.tube": "Test Tube",
+  "item.chemistry.hydrogen": "Hydrogen",
+  "item.chemistry.helium": "Helium",
+  "item.chemistry.lithium": "Lithium",
+  "item.chemistry.beryllium": "Beryllium",
+  "item.chemistry.boron": "Boron",
+  "item.chemistry.carbon": "Carbon",
+  "item.chemistry.nitrogen": "Nitrogen",
+  "item.chemistry.oxygen": "Oxygen",
+  "item.chemistry.fluorine": "Fluorine",
+  "item.chemistry.neon": "Neon",
+  "item.chemistry.sodium": "Sodium",
+  "item.chemistry.magnesium": "Magnesium",
+  "item.chemistry.aluminium": "Aluminium",
+  "item.chemistry.silicon": "Silicon",
+
+  "itemGroup.chemistry.items": "Chemistry - Items",
+  "itemGroup.chemistry.elements": "Chemistry - Elements",
+  "chemistry.solid.tooltip": "State: Solid",
+  "chemistry.liquid.tooltip": "State: Liquid",
+  "chemistry.gas.tooltip": "State: Gas",
+  "chemistry.unknown.tooltip": "State: Unknown"
+}

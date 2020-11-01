@@ -23,6 +23,7 @@
     ]
   },
   "mixins": [
+    "chemistry.mixins.json"
   ],
 
   "depends": {

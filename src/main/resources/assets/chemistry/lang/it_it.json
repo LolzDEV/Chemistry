@@ -1,0 +1,24 @@
+{
+  "item.chemistry.tube": "Provetta",
+  "item.chemistry.hydrogen": "Idrogeno",
+  "item.chemistry.helium": "Elio",
+  "item.chemistry.lithium": "Litio",
+  "item.chemistry.beryllium": "Berillio",
+  "item.chemistry.boron": "Boro",
+  "item.chemistry.carbon": "Carbonio",
+  "item.chemistry.nitrogen": "Azoto",
+  "item.chemistry.oxygen": "Ossigeno",
+  "item.chemistry.fluorine": "Fluoro",
+  "item.chemistry.neon": "Neon",
+  "item.chemistry.sodium": "Sodio",
+  "item.chemistry.magnesium": "Magnesio",
+  "item.chemistry.aluminium": "Aluminio",
+  "item.chemistry.silicon": "Silicio",
+
+  "itemGroup.chemistry.items": "Chemistry - Oggetti",
+  "itemGroup.chemistry.elements": "Chemistry - Elementi",
+  "chemistry.solid.tooltip": "Stato: Solido",
+  "chemistry.liquid.tooltip": "Stato: Liquido",
+  "chemistry.gas.tooltip": "Stato: Gassoso",
+  "chemistry.unknown.tooltip": "Stato: Sconosciuto"
+}
