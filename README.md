@@ -1,9 +1,5 @@
-# Fabric Example Mod
+# Chemistry
 
-## Setup
+This is a fabric mod and there are no plans to port this mod to Forge.
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+![fapi](https://i.imgur.com/Ol1Tcf8.png)
