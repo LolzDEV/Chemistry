@@ -24,6 +24,11 @@ public class Elements {
         elements.put("magnesium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Magnesium", "Mg", 12, ChemicalType.SOLID));
         elements.put("aluminium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Aluminium", "Al", 13, ChemicalType.SOLID));
         elements.put("silicon", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Silicon", "Si", 14, ChemicalType.SOLID));
-    }
 
+        elements.put("francium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Francium", "Fr", 87, ChemicalType.Unknown));
+        elements.put("radium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Radium", "Ra", 88, ChemicalType.SOLID));
+        elements.put("actinium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Actinium", "Ac", 89, ChemicalType.SOLID));
+        elements.put("thorium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Thorium", "Th", 90, ChemicalType.SOLID));
+        elements.put("protactinium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Protactinium", "Pa", 91, ChemicalType.SOLID));
+    }
 }
