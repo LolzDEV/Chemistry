@@ -30,5 +30,13 @@ public class Elements {
         elements.put("actinium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Actinium", "Ac", 89, ChemicalType.SOLID));
         elements.put("thorium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Thorium", "Th", 90, ChemicalType.SOLID));
         elements.put("protactinium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Protactinium", "Pa", 91, ChemicalType.SOLID));
+        elements.put("uranium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Uranium", "U", 92, ChemicalType.SOLID));
+        elements.put("neptunium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Neptunium", "Np", 93, ChemicalType.SOLID));
+        elements.put("plutonium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Plutonium", "Pu", 94, ChemicalType.SOLID));
+        elements.put("americium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Americium", "Am", 95, ChemicalType.SOLID));
+        elements.put("curium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Curium", "Cm", 96, ChemicalType.SOLID));
+        elements.put("berkelium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Berkelium", "Bk", 97, ChemicalType.SOLID));
+        elements.put("californium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Californium", "Cf", 98, ChemicalType.SOLID)); // The CurseForge element
+        elements.put("Einsteinium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Einsteinium", "Es", 99, ChemicalType.SOLID));
     }
 }
