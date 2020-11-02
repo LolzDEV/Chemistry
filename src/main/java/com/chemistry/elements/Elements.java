@@ -52,5 +52,10 @@ public class Elements {
         elements.put("roentgenium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Roentgenium", "Rg", 111, ChemicalType.Unknown));
         elements.put("copernicium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Copernicium", "Cn", 112, ChemicalType.Unknown));
         elements.put("nihonium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Nihonium", "Nh", 113, ChemicalType.Unknown));
+        elements.put("flerovium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Flerovium", "Fl", 114, ChemicalType.Unknown));
+        elements.put("moscovium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Moscovium", "Mc", 115, ChemicalType.Unknown)); // The Minecraft element
+        elements.put("livermorium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Livermorium", "Lv", 116, ChemicalType.Unknown));
+        elements.put("tennessine", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Tennessine", "Ts", 117, ChemicalType.Unknown)); // The Typescript element
+        elements.put("oganesson", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Oganesson", "Og", 118, ChemicalType.Unknown));
     }
 }
