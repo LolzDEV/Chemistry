@@ -18,7 +18,6 @@ public class ModelLoaderMixin {
         if (!"chemistry".equals(id.getNamespace())) return;
         if (!Items.chemistry_elements.containsKey(id.getPath())) return;
         String modelJson = ModelUtil.createElementModelJson(id.getPath());
-        System.out.println("It works!");
         if ("".equals(modelJson)) return;
         JsonUnbakedModel model = JsonUnbakedModel.deserialize(modelJson);
         model.id = id.toString();
