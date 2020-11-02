@@ -37,6 +37,20 @@ public class Elements {
         elements.put("curium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Curium", "Cm", 96, ChemicalType.SOLID));
         elements.put("berkelium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Berkelium", "Bk", 97, ChemicalType.SOLID));
         elements.put("californium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Californium", "Cf", 98, ChemicalType.SOLID)); // The CurseForge element
-        elements.put("Einsteinium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Einsteinium", "Es", 99, ChemicalType.SOLID));
+        elements.put("einsteinium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Einsteinium", "Es", 99, ChemicalType.SOLID));
+        elements.put("fermium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Fermium", "Fm", 100, ChemicalType.SOLID));
+        elements.put("mendelevium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Mendelevium", "Md", 101, ChemicalType.SOLID)); // The MarkDown element
+        elements.put("nobelium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Nobelium", "No", 102, ChemicalType.SOLID));
+        elements.put("lawrencium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Lawrencium", "Lr", 103, ChemicalType.SOLID));
+        elements.put("rutherfordium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Rutherfordium", "Rf", 104, ChemicalType.Unknown));
+        elements.put("dubnium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Dubnium", "Db", 105, ChemicalType.Unknown)); // The Database element
+        elements.put("seaborgium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Seaborgium", "Sg", 106, ChemicalType.Unknown));
+        elements.put("bohrium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Bohrium", "Bh", 107, ChemicalType.Unknown));
+        elements.put("hassium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Hassium", "Hs", 108, ChemicalType.Unknown));
+        elements.put("meitnerium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Meitnerium", "Mt", 109, ChemicalType.Unknown));
+        elements.put("darmstadtium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Darmstadtium", "Ds", 110, ChemicalType.Unknown));
+        elements.put("roentgenium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Roentgenium", "Rg", 111, ChemicalType.Unknown));
+        elements.put("copernicium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Copernicium", "Cn", 112, ChemicalType.Unknown));
+        elements.put("nihonium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Nihonium", "Nh", 113, ChemicalType.Unknown));
     }
 }
