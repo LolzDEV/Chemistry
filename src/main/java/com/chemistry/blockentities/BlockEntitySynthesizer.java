@@ -12,7 +12,6 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
@@ -229,7 +228,7 @@ public class BlockEntitySynthesizer extends BlockEntity implements NamedScreenHa
 
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new ScreenHandlerSynthesizer(syncId, inv, this, this.propertyDelegate);
+        return new ScreenHandlerSynthesizer(syncId, inv, this, this.propertyDelegate, this);
     }
 
     @Override
@@ -263,9 +262,7 @@ public class BlockEntitySynthesizer extends BlockEntity implements NamedScreenHa
                 current.add(new ItemStack(i.getItem()));
             }
         }
-        System.out.println(current);
         String formula = FormulaSerializer.serialize(current);
-        System.out.println(formula);
         Item result = ChemicalComposition.getItemFromComposition(formula);
         this.inventory.set(9, new ItemStack(result));
     }

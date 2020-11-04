@@ -1,5 +1,6 @@
 package com.chemistry.screen;
 
+import com.chemistry.containers.DecomposerOutputSlot;
 import com.chemistry.core.Chemistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -35,7 +36,7 @@ public class ScreenHandlerDecomposer extends ScreenHandler {
 
         //Output slots
         for (m = 1; m < 10; ++m) {
-            this.addSlot(new Slot(inventory, m, 7 + (m-1) * 18, 42));
+            this.addSlot(new DecomposerOutputSlot(inventory, m, 8 + (m-1) * 18, 43));
         }
 
         //The player inventory

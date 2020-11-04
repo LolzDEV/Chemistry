@@ -1,5 +1,6 @@
 package com.chemistry.screen;
 
+import com.chemistry.blockentities.BlockEntitySynthesizer;
 import com.chemistry.containers.SynthesizerOutputSlot;
 import com.chemistry.core.Chemistry;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,20 +12,23 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import team.reborn.energy.EnergySide;
 
 public class ScreenHandlerSynthesizer extends ScreenHandler {
     private final Inventory inventory;
     PropertyDelegate propertyDelegate;
+    BlockEntitySynthesizer synthesizer;
 
     public ScreenHandlerSynthesizer(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(10), new ArrayPropertyDelegate(1));
+        this(syncId, playerInventory, new SimpleInventory(10), new ArrayPropertyDelegate(1), null);
     }
 
-    public ScreenHandlerSynthesizer(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
+    public ScreenHandlerSynthesizer(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, BlockEntitySynthesizer synthesizer) {
         super(Chemistry.SYNTHESIZER_SCREEN_HANDLER, syncId);
         this.propertyDelegate = propertyDelegate;
         checkSize(inventory, 10);
         this.inventory = inventory;
+        this.synthesizer = synthesizer;
         inventory.onOpen(playerInventory.player);
 
         this.addProperties(propertyDelegate);
@@ -39,7 +43,7 @@ public class ScreenHandlerSynthesizer extends ScreenHandler {
         }
 
         //Output slot
-        this.addSlot(new SynthesizerOutputSlot(inventory, 9, 115, 33));
+        this.addSlot(new SynthesizerOutputSlot(inventory, 9, 115, 33, this.synthesizer));
 
         //The player inventory
         for (m = 0; m < 3; ++m) {
@@ -61,6 +65,7 @@ public class ScreenHandlerSynthesizer extends ScreenHandler {
 
     @Override
     public ItemStack transferSlot(PlayerEntity player, int invSlot) {
+        if(propertyDelegate.get(0) < 500) return ItemStack.EMPTY;
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
         if (slot != null && slot.hasStack()) {
@@ -69,9 +74,19 @@ public class ScreenHandlerSynthesizer extends ScreenHandler {
             if (invSlot < this.inventory.size()) {
                 if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
                     return ItemStack.EMPTY;
+                } else {
+                    if (slot instanceof SynthesizerOutputSlot){
+                        this.inventory.clear();
+                        if(synthesizer != null) this.synthesizer.useEnergy(500);
+                    }
                 }
             } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
                 return ItemStack.EMPTY;
+            } else {
+                if (slot instanceof SynthesizerOutputSlot){
+                    this.inventory.clear();
+                    if(synthesizer != null) this.synthesizer.useEnergy(500);
+                }
             }
 
             if (originalStack.isEmpty()) {
