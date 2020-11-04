@@ -1,6 +1,7 @@
 package com.chemistry.items;
 
 import com.chemistry.api.ItemElement;
+import com.chemistry.blocks.Blocks;
 import com.chemistry.elements.Elements;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
@@ -19,6 +20,8 @@ public class ItemGroups {
             TreeMap<Integer, ItemElement> sorted = new TreeMap<>();
             for(Map.Entry<String, ItemElement> entry : Elements.elements.entrySet()) sorted.put(entry.getValue().getAtomicNumber(), entry.getValue());
             for(Map.Entry<Integer, ItemElement> entry : sorted.entrySet()) itemStacks.add(new ItemStack(entry.getValue()));
-
     }).build();
+    public static final ItemGroup CHEMISTRY_MACHINES = FabricItemGroupBuilder.build(
+            new Identifier("chemistry", "machines"),
+            () -> new ItemStack(Blocks.DECOMPOSER));
 }

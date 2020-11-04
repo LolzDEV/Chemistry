@@ -1,6 +1,6 @@
 package com.chemistry.blocks;
 
-import com.chemistry.blockentities.BlockEntityDecomposer;
+import com.chemistry.blockentities.BlockEntitySynthesizer;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,8 +17,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class BlockDecomposer extends HorizontalFacingBlock implements BlockEntityProvider {
-    public BlockDecomposer(Settings settings) {
+public class BlockSynthesizer extends HorizontalFacingBlock implements BlockEntityProvider {
+    public BlockSynthesizer(Settings settings) {
         super(settings);
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
@@ -34,7 +34,7 @@ public class BlockDecomposer extends HorizontalFacingBlock implements BlockEntit
 
     @Override
     public BlockEntity createBlockEntity(BlockView world) {
-        return new BlockEntityDecomposer();
+        return new BlockEntitySynthesizer();
     }
 
     @Override
@@ -53,8 +53,8 @@ public class BlockDecomposer extends HorizontalFacingBlock implements BlockEntit
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof BlockEntityDecomposer) {
-                ItemScatterer.spawn(world, pos, (BlockEntityDecomposer)blockEntity);
+            if (blockEntity instanceof BlockEntitySynthesizer) {
+                ItemScatterer.spawn(world, pos, (BlockEntitySynthesizer)blockEntity);
                 world.updateComparators(pos,this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
@@ -70,5 +70,4 @@ public class BlockDecomposer extends HorizontalFacingBlock implements BlockEntit
         return (NamedScreenHandlerFactory) world.getBlockEntity(pos);
 
     }
-
 }

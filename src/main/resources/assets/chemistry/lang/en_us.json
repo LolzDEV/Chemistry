@@ -119,8 +119,13 @@
   "item.chemistry.tennessine": "Tennessine",
   "item.chemistry.oganesson": "Oganesson",
 
+
+  "block.chemistry.decomposer": "Chemical Decomposer",
+  "block.chemistry.synthesizer": "Chemical Synthesis Machine",
+
   "itemGroup.chemistry.items": "Chemistry - Items",
   "itemGroup.chemistry.elements": "Chemistry - Elements",
+  "itemGroup.chemistry.machines": "Chemistry - Machines",
   "chemistry.solid.tooltip": "State: Solid",
   "chemistry.liquid.tooltip": "State: Liquid",
   "chemistry.gas.tooltip": "State: Gas",

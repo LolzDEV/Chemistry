@@ -8,11 +8,11 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class DecomposerScreen extends HandledScreen<ScreenHandler> {
+public class SynthesizerScreen extends HandledScreen<ScreenHandler> {
 
-    private static final Identifier TEXTURE = new Identifier("chemistry", "textures/gui/container/decomposer.png");
+    private static final Identifier TEXTURE = new Identifier("chemistry", "textures/gui/container/synthesizer.png");
 
-    public DecomposerScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
+    public SynthesizerScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
 
@@ -23,9 +23,9 @@ public class DecomposerScreen extends HandledScreen<ScreenHandler> {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
-        int l = ((ScreenHandlerDecomposer)this.handler).getBattery();
+        int l = ((ScreenHandlerSynthesizer)this.handler).getBattery();
         int w = 39 * l / 4000;
-        this.drawTexture(matrices, this.x + 102, this.y + 23, 176, 3, w + 1, 10);
+        this.drawTexture(matrices, this.x + 104, this.y + 58, 176, 3, w + 1, 10);
     }
 
     @Override

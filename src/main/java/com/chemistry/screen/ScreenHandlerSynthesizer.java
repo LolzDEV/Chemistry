@@ -1,5 +1,6 @@
 package com.chemistry.screen;
 
+import com.chemistry.containers.SynthesizerOutputSlot;
 import com.chemistry.core.Chemistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -11,16 +12,16 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
-public class ScreenHandlerDecomposer extends ScreenHandler {
+public class ScreenHandlerSynthesizer extends ScreenHandler {
     private final Inventory inventory;
     PropertyDelegate propertyDelegate;
 
-    public ScreenHandlerDecomposer(int syncId, PlayerInventory playerInventory) {
+    public ScreenHandlerSynthesizer(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(10), new ArrayPropertyDelegate(1));
     }
 
-    public ScreenHandlerDecomposer(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
-        super(Chemistry.DECOMPOSER_SCREEN_HANDLER, syncId);
+    public ScreenHandlerSynthesizer(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
+        super(Chemistry.SYNTHESIZER_SCREEN_HANDLER, syncId);
         this.propertyDelegate = propertyDelegate;
         checkSize(inventory, 10);
         this.inventory = inventory;
@@ -30,13 +31,15 @@ public class ScreenHandlerDecomposer extends ScreenHandler {
 
         int m;
         int l;
-        //Input slot
-        this.addSlot(new Slot(inventory, 0, 80, 20));
-
-        //Output slots
-        for (m = 1; m < 10; ++m) {
-            this.addSlot(new Slot(inventory, m, 7 + (m-1) * 18, 42));
+        //Input slots
+        for (m = 0; m < 3; ++m) {
+            for (l = 0; l < 3; ++l) {
+                this.addSlot(new Slot(inventory, m + l * 3, 8 + (m) * 18, 15 + (l) * 18));
+            }
         }
+
+        //Output slot
+        this.addSlot(new SynthesizerOutputSlot(inventory, 9, 115, 33));
 
         //The player inventory
         for (m = 0; m < 3; ++m) {
@@ -86,5 +89,4 @@ public class ScreenHandlerDecomposer extends ScreenHandler {
         if(i == 0) i = 1;
         return i;
     }
-
 }

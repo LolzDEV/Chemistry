@@ -1,7 +1,7 @@
 package com.chemistry.blockentities;
 
 import com.chemistry.api.ChemicalComposition;
-import com.chemistry.screen.ScreenHandlerDecomposer;
+import com.chemistry.screen.ScreenHandlerSynthesizer;
 import com.chemistry.utils.FormulaSerializer;
 import com.chemistry.utils.ImplementedInventory;
 import net.minecraft.block.BlockState;
@@ -10,7 +10,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
@@ -24,29 +26,28 @@ import org.jetbrains.annotations.Nullable;
 import team.reborn.energy.EnergySide;
 import team.reborn.energy.EnergyStorage;
 import team.reborn.energy.EnergyTier;
-
 import java.util.ArrayList;
+
 import static net.minecraft.screen.ScreenHandler.canStacksCombine;
 
-public class BlockEntityDecomposer extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory, Tickable, SidedInventory, EnergyStorage {
-
+public class BlockEntitySynthesizer extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory, Tickable, SidedInventory, EnergyStorage {
     private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(10, ItemStack.EMPTY);
     protected final PropertyDelegate propertyDelegate;
-    boolean working = false;
-    ArrayList<ItemStack> result = new ArrayList<>();
+    boolean created = false;
     double energy;
 
 
-    public BlockEntityDecomposer() {
-        super(BlockEntities.BLOCK_ENTITY_DECOMPOSER);
+
+    public BlockEntitySynthesizer() {
+        super(BlockEntities.BLOCK_ENTITY_SYNTHESIZER);
         this.propertyDelegate = new PropertyDelegate() {
             public int get(int index) {
-                return (int) BlockEntityDecomposer.this.getStored(EnergySide.UNKNOWN);
+                return (int) BlockEntitySynthesizer.this.getStored(EnergySide.UNKNOWN);
             }
 
             public void set(int index, int value) {
                 if (index == 0) {
-                    BlockEntityDecomposer.this.setStored(value);
+                    BlockEntitySynthesizer.this.setStored(value);
                 }
 
             }
@@ -129,11 +130,9 @@ public class BlockEntityDecomposer extends BlockEntity implements NamedScreenHan
 
         for (boolean bl : bls) {
             if(bl){
-                System.out.println("false!");
                 return false;
             }
         }
-        System.out.println("true!");
         return true;
     }
 
@@ -230,7 +229,7 @@ public class BlockEntityDecomposer extends BlockEntity implements NamedScreenHan
 
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new ScreenHandlerDecomposer(syncId, inv, this, this.propertyDelegate);
+        return new ScreenHandlerSynthesizer(syncId, inv, this, this.propertyDelegate);
     }
 
     @Override
@@ -243,8 +242,7 @@ public class BlockEntityDecomposer extends BlockEntity implements NamedScreenHan
         super.fromTag(state, tag);
         inventory = DefaultedList.ofSize(this.inventory.size(), ItemStack.EMPTY);
         Inventories.fromTag(tag, this.inventory);
-        working = tag.getBoolean("working");
-        result = FormulaSerializer.deserialize(tag.getString("result"));
+        created = tag.getBoolean("created");
         energy = tag.getDouble("energy");
     }
 
@@ -252,31 +250,24 @@ public class BlockEntityDecomposer extends BlockEntity implements NamedScreenHan
     public CompoundTag toTag(CompoundTag tag) {
         super.toTag(tag);
         Inventories.toTag(tag, this.inventory);
-        tag.putBoolean("working", working);
-        tag.putString("result", FormulaSerializer.serialize(result));
+        tag.putBoolean("working", created);
         tag.putDouble("energy", energy);
         return tag;
     }
 
     @Override
     public void tick() {
-        if(ChemicalComposition.hasComposition(inventory.get(0).getItem()) && !working) {
-            for (ItemStack i : FormulaSerializer.deserialize(ChemicalComposition.getComposition(inventory.get(0).getItem()))) {
-                result.add(i);
-            }
-            this.inventory.get(0).setCount(this.inventory.get(0).getCount()-1);
-            working = true;
-        }
-        if(working && this.energy >= 32){
-            if(result.size() <= 0) working = false;
-            for (int i = 0; i < result.size(); i++){
-                ItemStack item = result.get(i);
-                if (insertItem(item, 1, inventory.size(), false)) {
-                    this.useEnergy(32);
-                    result.remove(i);
-                }
+        ArrayList<ItemStack> current = new ArrayList<>();
+        for(ItemStack i : inventory){
+            for (int it = 0; it < i.getCount(); it++) {
+                current.add(new ItemStack(i.getItem()));
             }
         }
+        System.out.println(current);
+        String formula = FormulaSerializer.serialize(current);
+        System.out.println(formula);
+        Item result = ChemicalComposition.getItemFromComposition(formula);
+        this.inventory.set(9, new ItemStack(result));
     }
 
     @Override

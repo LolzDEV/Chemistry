@@ -1,5 +1,8 @@
 {
 	"variants": {
-		"": { "model": "chemistry:block/decomposer" }
+		"facing=south": { "model": "chemistry:block/decomposer" },
+		"facing=east":  { "model": "chemistry:block/decomposer", "y":  -90},
+		"facing=north": { "model": "chemistry:block/decomposer", "y": -180 },
+		"facing=west":  { "model": "chemistry:block/decomposer", "y": -270 }
 	}
 }

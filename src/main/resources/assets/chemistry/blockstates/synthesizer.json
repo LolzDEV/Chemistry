@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=south": { "model": "chemistry:block/synthesizer" },
+		"facing=east":  { "model": "chemistry:block/synthesizer", "y":  -90},
+		"facing=north": { "model": "chemistry:block/synthesizer", "y": -180 },
+		"facing=west":  { "model": "chemistry:block/synthesizer", "y": -270 }
+	}
+}

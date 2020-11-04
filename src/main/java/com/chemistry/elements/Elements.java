@@ -5,9 +5,17 @@ import com.chemistry.items.ItemGroups;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Elements {
     public static HashMap<String, ItemElement> elements = new HashMap<>();
+
+    public static ItemElement getFromSymbol(String symbol){
+        for(Map.Entry<String, ItemElement> entry : elements.entrySet()){
+            if (entry.getValue().getSymbol().equals(symbol)) return entry.getValue();
+        }
+        return null;
+    }
 
     public static void initializeElements(){
         elements.put("hydrogen", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Hydrogen", "H", 1, ChemicalType.GAS));

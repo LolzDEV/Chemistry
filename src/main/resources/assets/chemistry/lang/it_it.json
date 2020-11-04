@@ -84,8 +84,12 @@
   "item.chemistry.astatine": "Astato",
   "item.chemistry.radon": "Radon",
 
+  "block.chemistry.decomposer": "Centrifuga",
+  "block.chemistry.synthesizer": "Macchina Sintetizzatrice",
+
   "itemGroup.chemistry.items": "Chemistry - Oggetti",
   "itemGroup.chemistry.elements": "Chemistry - Elementi",
+  "itemGroup.chemistry.machines": "Chemistry - Macchinari",
   "chemistry.solid.tooltip": "Stato: Solido",
   "chemistry.liquid.tooltip": "Stato: Liquido",
   "chemistry.gas.tooltip": "Stato: Gassoso",
