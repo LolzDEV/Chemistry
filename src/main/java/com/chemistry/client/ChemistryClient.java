@@ -2,6 +2,7 @@ package com.chemistry.client;
 
 import com.chemistry.core.Chemistry;
 import com.chemistry.screen.DecomposerScreen;
+import com.chemistry.screen.MicroscopeScreen;
 import com.chemistry.screen.SynthesizerScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -15,5 +16,6 @@ public class ChemistryClient implements ClientModInitializer {
     public void onInitializeClient() {
         ScreenRegistry.register(Chemistry.DECOMPOSER_SCREEN_HANDLER, DecomposerScreen::new);
         ScreenRegistry.register(Chemistry.SYNTHESIZER_SCREEN_HANDLER, SynthesizerScreen::new);
+        ScreenRegistry.register(Chemistry.MICROSCOPE_SCREEN_HANDLER, MicroscopeScreen::new);
     }
 }

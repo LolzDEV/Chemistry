@@ -122,6 +122,7 @@
 
   "block.chemistry.decomposer": "Chemical Decomposer",
   "block.chemistry.synthesizer": "Chemical Synthesis Machine",
+  "block.chemistry.microscope": "Microscope",
 
   "itemGroup.chemistry.items": "Chemistry - Items",
   "itemGroup.chemistry.elements": "Chemistry - Elements",

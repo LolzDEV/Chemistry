@@ -1,19 +1,22 @@
 package com.chemistry.containers;
 
 import com.chemistry.blockentities.BlockEntitySynthesizer;
+import com.chemistry.screen.ScreenHandlerSynthesizer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
-import team.reborn.energy.EnergySide;
+
 
 public class SynthesizerOutputSlot extends Slot {
 
     BlockEntitySynthesizer synthesizer;
+    ScreenHandlerSynthesizer handler;
 
-    public SynthesizerOutputSlot(Inventory inventory, int index, int x, int y, BlockEntitySynthesizer synthesizer) {
+    public SynthesizerOutputSlot(Inventory inventory, int index, int x, int y, BlockEntitySynthesizer synthesizer, ScreenHandlerSynthesizer handler) {
         super(inventory, index, x, y);
         this.synthesizer = synthesizer;
+        this.handler = handler;
     }
 
     @Override
@@ -23,8 +26,7 @@ public class SynthesizerOutputSlot extends Slot {
 
     @Override
     public boolean canTakeItems(PlayerEntity playerEntity) {
-        if(synthesizer != null) return this.synthesizer.getStored(EnergySide.UNKNOWN) >= 500;
-        return true;
+        return this.handler.propertyDelegate.get(0) >= 500;
     }
 
     @Override

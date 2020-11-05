@@ -17,6 +17,13 @@ public class Elements {
         return null;
     }
 
+    public static ItemElement getFromNumber(int atomicNumber){
+        for(Map.Entry<String, ItemElement> entry : elements.entrySet()){
+            if (entry.getValue().getAtomicNumber() == atomicNumber) return entry.getValue();
+        }
+        return null;
+    }
+
     public static void initializeElements(){
         elements.put("hydrogen", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Hydrogen", "H", 1, ChemicalType.GAS));
         elements.put("helium", new ItemElement(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ELEMENTS), "Helium", "He", 2, ChemicalType.GAS));

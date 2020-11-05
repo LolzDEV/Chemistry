@@ -1,6 +1,8 @@
 package com.chemistry.blocks;
 
 import com.chemistry.blockentities.BlockEntityDecomposer;
+import com.chemistry.blockentities.BlockEntityMicroscope;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,9 +19,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class BlockDecomposer extends HorizontalFacingBlock implements BlockEntityProvider {
+public class BlockMicroscope extends HorizontalFacingBlock implements BlockEntityProvider {
 
-    public BlockDecomposer(Settings settings) {
+    public BlockMicroscope(Settings settings) {
         super(settings);
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
@@ -35,7 +37,7 @@ public class BlockDecomposer extends HorizontalFacingBlock implements BlockEntit
 
     @Override
     public BlockEntity createBlockEntity(BlockView world) {
-        return new BlockEntityDecomposer();
+        return new BlockEntityMicroscope();
     }
 
     @Override
@@ -54,8 +56,8 @@ public class BlockDecomposer extends HorizontalFacingBlock implements BlockEntit
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof BlockEntityDecomposer) {
-                ItemScatterer.spawn(world, pos, (BlockEntityDecomposer)blockEntity);
+            if (blockEntity instanceof BlockEntityMicroscope) {
+                ItemScatterer.spawn(world, pos, (BlockEntityMicroscope) blockEntity);
                 world.updateComparators(pos,this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
@@ -71,5 +73,4 @@ public class BlockDecomposer extends HorizontalFacingBlock implements BlockEntit
         return (NamedScreenHandlerFactory) world.getBlockEntity(pos);
 
     }
-
 }

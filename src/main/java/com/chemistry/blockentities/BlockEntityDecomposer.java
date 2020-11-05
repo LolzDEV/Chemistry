@@ -260,8 +260,8 @@ public class BlockEntityDecomposer extends BlockEntity implements NamedScreenHan
 
     @Override
     public void tick() {
-        if(ChemicalComposition.hasComposition(inventory.get(0).getItem()) && !working) {
-            for (ItemStack i : FormulaSerializer.deserialize(ChemicalComposition.getComposition(inventory.get(0).getItem()))) {
+        if(ChemicalComposition.hasDecomposerComposition(inventory.get(0).getItem()) && !working) {
+            for (ItemStack i : FormulaSerializer.deserialize(ChemicalComposition.getDecomposerComposition(inventory.get(0).getItem()))) {
                 result.add(i);
             }
             this.inventory.get(0).setCount(this.inventory.get(0).getCount()-1);

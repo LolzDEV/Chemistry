@@ -12,11 +12,10 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import team.reborn.energy.EnergySide;
 
 public class ScreenHandlerSynthesizer extends ScreenHandler {
     private final Inventory inventory;
-    PropertyDelegate propertyDelegate;
+    public PropertyDelegate propertyDelegate;
     BlockEntitySynthesizer synthesizer;
 
     public ScreenHandlerSynthesizer(int syncId, PlayerInventory playerInventory) {
@@ -43,7 +42,7 @@ public class ScreenHandlerSynthesizer extends ScreenHandler {
         }
 
         //Output slot
-        this.addSlot(new SynthesizerOutputSlot(inventory, 9, 115, 33, this.synthesizer));
+        this.addSlot(new SynthesizerOutputSlot(inventory, 9, 115, 33, this.synthesizer, this));
 
         //The player inventory
         for (m = 0; m < 3; ++m) {
@@ -65,7 +64,7 @@ public class ScreenHandlerSynthesizer extends ScreenHandler {
 
     @Override
     public ItemStack transferSlot(PlayerEntity player, int invSlot) {
-        if(propertyDelegate.get(0) < 500) return ItemStack.EMPTY;
+        if(propertyDelegate.get(0) < 500 && invSlot == 9) return ItemStack.EMPTY;
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
         if (slot != null && slot.hasStack()) {

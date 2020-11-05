@@ -10,6 +10,13 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+repositories {
+	maven {
+		name = "BuildCraft"
+		url = "https://mod-buildcraft.com/maven"
+	}
+}
+
 dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"

@@ -1,6 +1,7 @@
 package com.chemistry.blockentities;
 
 import com.chemistry.api.ChemicalComposition;
+import com.chemistry.api.ItemElement;
 import com.chemistry.screen.ScreenHandlerSynthesizer;
 import com.chemistry.utils.FormulaSerializer;
 import com.chemistry.utils.ImplementedInventory;
@@ -26,6 +27,8 @@ import team.reborn.energy.EnergySide;
 import team.reborn.energy.EnergyStorage;
 import team.reborn.energy.EnergyTier;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static net.minecraft.screen.ScreenHandler.canStacksCombine;
 
@@ -256,14 +259,23 @@ public class BlockEntitySynthesizer extends BlockEntity implements NamedScreenHa
 
     @Override
     public void tick() {
-        ArrayList<ItemStack> current = new ArrayList<>();
-        for(ItemStack i : inventory){
-            for (int it = 0; it < i.getCount(); it++) {
-                current.add(new ItemStack(i.getItem()));
+        DefaultedList<String> recipe = DefaultedList.ofSize(9, "");
+        for(int i = 0; i < inventory.size()-1; i++){
+            ItemStack itemStack = inventory.get(i);
+            if(itemStack.getItem() instanceof ItemElement) {
+                recipe.set(i, FormulaSerializer.serialize(new ArrayList<>(Collections.singletonList(itemStack))));
             }
         }
-        String formula = FormulaSerializer.serialize(current);
-        Item result = ChemicalComposition.getItemFromComposition(formula);
+        ArrayList<String> current = new ArrayList<>();
+        for(String s : recipe){
+            if(s.equals("")) {
+                current.add(null);
+            } else {
+                current.add(s);
+            }
+        }
+        System.out.println(current);
+        Item result = ChemicalComposition.getItemFromRecipe(current);
         this.inventory.set(9, new ItemStack(result));
     }
 

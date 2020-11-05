@@ -58,7 +58,11 @@ public class FormulaSerializer {
             }
         }
         for(Map.Entry<String, Integer> entry : cur.entrySet()){
-            formula.append(entry.getKey() + entry.getValue());
+            if(entry.getValue() > 1) {
+                formula.append(entry.getKey() + entry.getValue());
+            } else {
+                formula.append(entry.getKey());
+            }
         }
         return formula.toString();
     }

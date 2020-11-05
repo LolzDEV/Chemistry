@@ -12,8 +12,9 @@ import net.minecraft.util.registry.Registry;
 
 public class Blocks {
 
-    public static final Block DECOMPOSER = new BlockDecomposer(FabricBlockSettings.of(Material.METAL));
+    public static final Block DECOMPOSER = new BlockDecomposer(FabricBlockSettings.of(Material.METAL).nonOpaque());
     public static final Block SYNTHESIZER = new BlockSynthesizer(FabricBlockSettings.of(Material.METAL).nonOpaque());
+    public static final Block MICROSCOPE = new BlockMicroscope(FabricBlockSettings.of(Material.METAL).nonOpaque());
 
     public static void registerBlocks(){
         Registry.register(Registry.BLOCK, new Identifier("chemistry", "decomposer"), DECOMPOSER);
@@ -21,5 +22,8 @@ public class Blocks {
 
         Registry.register(Registry.BLOCK, new Identifier("chemistry", "synthesizer"), SYNTHESIZER);
         Registry.register(Registry.ITEM, new Identifier("chemistry", "synthesizer"), new BlockItem(SYNTHESIZER, new Item.Settings().group(ItemGroups.CHEMISTRY_MACHINES)));
+
+        Registry.register(Registry.BLOCK, new Identifier("chemistry", "microscope"), MICROSCOPE);
+        Registry.register(Registry.ITEM, new Identifier("chemistry", "microscope"), new BlockItem(MICROSCOPE, new Item.Settings().group(ItemGroups.CHEMISTRY_MACHINES)));
     }
 }

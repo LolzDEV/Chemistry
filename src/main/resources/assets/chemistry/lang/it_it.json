@@ -86,6 +86,7 @@
 
   "block.chemistry.decomposer": "Centrifuga",
   "block.chemistry.synthesizer": "Macchina Sintetizzatrice",
+  "block.chemistry.microscope": "Microscopio",
 
   "itemGroup.chemistry.items": "Chemistry - Oggetti",
   "itemGroup.chemistry.elements": "Chemistry - Elementi",
