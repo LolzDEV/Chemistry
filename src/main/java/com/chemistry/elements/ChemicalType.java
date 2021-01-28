@@ -4,5 +4,6 @@ public enum ChemicalType {
     SOLID,
     LIQUID,
     GAS,
+    COMPOUND,
     Unknown
 }

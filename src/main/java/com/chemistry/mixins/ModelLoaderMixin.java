@@ -16,12 +16,20 @@ public class ModelLoaderMixin {
     @Inject(method = "loadModelFromJson", at = @At(value = "INVOKE", target = "Lnet/minecraft/resource/ResourceManager;getResource(Lnet/minecraft/util/Identifier;)Lnet/minecraft/resource/Resource;"), cancellable = true)
     public void loadModelFromJson(Identifier id, CallbackInfoReturnable<JsonUnbakedModel> cir) {
         if (!"chemistry".equals(id.getNamespace())) return;
-        if (!Items.chemistry_elements.containsKey(id.getPath())) return;
-        String modelJson = ModelUtil.createElementModelJson(id.getPath());
-        if ("".equals(modelJson)) return;
-        JsonUnbakedModel model = JsonUnbakedModel.deserialize(modelJson);
-        model.id = id.toString();
-        cir.setReturnValue(model);
-        cir.cancel();
+        if (Items.chemistry_elements.containsKey(id.getPath())) {
+            String modelJson = ModelUtil.createElementModelJson(id.getPath());
+            if ("".equals(modelJson)) return;
+            JsonUnbakedModel model = JsonUnbakedModel.deserialize(modelJson);
+            model.id = id.toString();
+            cir.setReturnValue(model);
+            cir.cancel();
+        } else if(Items.chemistry_compounds.containsKey(id.getPath())){
+            String modelJson = ModelUtil.createElementModelJson(id.getPath());
+            if ("".equals(modelJson)) return;
+            JsonUnbakedModel model = JsonUnbakedModel.deserialize(modelJson);
+            model.id = id.toString();
+            cir.setReturnValue(model);
+            cir.cancel();
+        }
     }
 }

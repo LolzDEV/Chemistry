@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "chemistry:block/reactor_core"
+	}
+}

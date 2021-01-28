@@ -1,9 +1,9 @@
 package com.chemistry.blockentities;
 
-import com.chemistry.api.ChemicalComposition;
 import com.chemistry.api.ItemElement;
-import com.chemistry.screen.ScreenHandlerSynthesizer;
-import com.chemistry.utils.FormulaSerializer;
+import com.chemistry.blocks.Blocks;
+import com.chemistry.elements.Elements;
+import com.chemistry.screen.ScreenHandlerReactor;
 import com.chemistry.utils.ImplementedInventory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -21,35 +21,34 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 import team.reborn.energy.EnergySide;
 import team.reborn.energy.EnergyStorage;
 import team.reborn.energy.EnergyTier;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 import static net.minecraft.screen.ScreenHandler.canStacksCombine;
 
-public class BlockEntitySynthesizer extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory, Tickable, SidedInventory, EnergyStorage {
-    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(10, ItemStack.EMPTY);
+public class BlockEntityReactor extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory, Tickable, SidedInventory, EnergyStorage {
+    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
     protected final PropertyDelegate propertyDelegate;
-    boolean created = false;
     double energy;
 
 
 
-    public BlockEntitySynthesizer() {
-        super(BlockEntities.BLOCK_ENTITY_SYNTHESIZER);
+    public BlockEntityReactor() {
+        super(BlockEntities.BLOCK_ENTITY_REACTOR);
         this.propertyDelegate = new PropertyDelegate() {
             public int get(int index) {
-                return (int) BlockEntitySynthesizer.this.getStored(EnergySide.UNKNOWN);
+                return (int) BlockEntityReactor.this.getStored(EnergySide.UNKNOWN);
             }
 
             public void set(int index, int value) {
                 if (index == 0) {
-                    BlockEntitySynthesizer.this.setStored(value);
+                    BlockEntityReactor.this.setStored(value);
                 }
 
             }
@@ -138,6 +137,110 @@ public class BlockEntitySynthesizer extends BlockEntity implements NamedScreenHa
         return true;
     }
 
+
+    public boolean checkMultiBlock(){
+
+        boolean check = true;
+
+        int x = this.getPos().getX() - 1;
+        int y = this.getPos().getY() - 1;
+        int z = this.getPos().getZ() - 1;
+
+        for (int i = x; i < x + 2; i++){
+            for (int b = z; b < z + 2; b++){
+                BlockState cur = this.world.getBlockState(new BlockPos(x, y, z));
+                if (cur != Blocks.REACTOR_CORE.getDefaultState()) check = false;
+            }
+        }
+
+        x = this.getPos().getX() - 2;
+        z = this.getPos().getZ() - 1;
+
+        for (int i = 0; i < 3; i++){
+            BlockState cur = this.world.getBlockState(new BlockPos(x, y, z+i));
+            if (cur != Blocks.REACTOR_CORE.getDefaultState()) check = false;
+        }
+
+        x = this.getPos().getX() + 2;
+
+        for (int i = 0; i < 3; i++){
+            BlockState cur = this.world.getBlockState(new BlockPos(x, y, z+i));
+            if (cur != Blocks.REACTOR_CORE.getDefaultState()) check = false;
+        }
+
+        x = this.getPos().getX() - 1;
+        z = this.getPos().getZ() - 2;
+
+        for (int i = 0; i < 3; i++){
+            BlockState cur = this.world.getBlockState(new BlockPos(x+i, y, z));
+            if (cur != Blocks.REACTOR_CORE.getDefaultState()) check = false;
+        }
+
+        x = this.getPos().getX() - 1;
+        z = this.getPos().getZ() + 2;
+
+        for (int i = 0; i < 3; i++){
+            BlockState cur = this.world.getBlockState(new BlockPos(x+i, y, z));
+            if (cur != Blocks.REACTOR_CORE.getDefaultState()) check = false;
+        }
+
+        for (int b=0; b < 2; b++) {
+            switch (b){
+                case 0:
+                    y = this.getPos().getY() -1;
+                case 1:
+                    y = this.getPos().getY();
+            }
+            x = this.getPos().getX() + 3;
+            z = this.getPos().getZ() + 1;
+
+            for (int i = 0; i < 3; i++) {
+                BlockState cur = this.world.getBlockState(new BlockPos(x, y, z - i));
+                if (cur != Blocks.REACTOR_COIL.getDefaultState()) check = false;
+            }
+
+            x = this.getPos().getX() - 3;
+
+            for (int i = 0; i < 3; i++) {
+                BlockState cur = this.world.getBlockState(new BlockPos(x, y, z - i));
+                if (cur != Blocks.REACTOR_COIL.getDefaultState()) check = false;
+            }
+
+            x = this.getPos().getX() + 1;
+            z = this.getPos().getZ() - 3;
+
+            for (int i = 0; i < 3; i++) {
+                BlockState cur = this.world.getBlockState(new BlockPos(x - i, y, z));
+                if (cur != Blocks.REACTOR_COIL.getDefaultState()) check = false;
+            }
+
+            z = this.getPos().getZ() + 3;
+
+            for (int i = 0; i < 3; i++) {
+                BlockState cur = this.world.getBlockState(new BlockPos(x - i, y, z));
+                if (cur != Blocks.REACTOR_COIL.getDefaultState()) check = false;
+            }
+
+            x = this.getPos().getX();
+            z = this.getPos().getZ();
+
+            BlockState cur = this.world.getBlockState(new BlockPos(x + 2, y, z - 2));
+            if (cur != Blocks.REACTOR_COIL.getDefaultState()) check = false;
+
+            cur = this.world.getBlockState(new BlockPos(x + 2, y, z + 2));
+            if (cur != Blocks.REACTOR_COIL.getDefaultState()) check = false;
+
+            cur = this.world.getBlockState(new BlockPos(x + 2, y, z - 2));
+            if (cur != Blocks.REACTOR_COIL.getDefaultState()) check = false;
+
+            cur = this.world.getBlockState(new BlockPos(x - 2, y, z + 2));
+            if (cur != Blocks.REACTOR_COIL.getDefaultState()) check = false;
+
+            cur = this.world.getBlockState(new BlockPos(x - 2, y, z - 2));
+            if (cur != Blocks.REACTOR_COIL.getDefaultState()) check = false;
+        }
+        return check;
+    }
 
 
     protected boolean insertItem(ItemStack stack, int startIndex, int endIndex, boolean fromLast) {
@@ -231,7 +334,7 @@ public class BlockEntitySynthesizer extends BlockEntity implements NamedScreenHa
 
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new ScreenHandlerSynthesizer(syncId, inv, this, this.propertyDelegate, this);
+        return new ScreenHandlerReactor(syncId, inv, this, this.propertyDelegate, this);
     }
 
     @Override
@@ -244,7 +347,6 @@ public class BlockEntitySynthesizer extends BlockEntity implements NamedScreenHa
         super.fromTag(state, tag);
         inventory = DefaultedList.ofSize(this.inventory.size(), ItemStack.EMPTY);
         Inventories.fromTag(tag, this.inventory);
-        created = tag.getBoolean("created");
         energy = tag.getDouble("energy");
     }
 
@@ -252,40 +354,44 @@ public class BlockEntitySynthesizer extends BlockEntity implements NamedScreenHa
     public CompoundTag toTag(CompoundTag tag) {
         super.toTag(tag);
         Inventories.toTag(tag, this.inventory);
-        tag.putBoolean("working", created);
         tag.putDouble("energy", energy);
         return tag;
     }
 
     @Override
     public void tick() {
-        DefaultedList<String> recipe = DefaultedList.ofSize(9, "");
-        for(int i = 0; i < inventory.size()-1; i++){
-            ItemStack itemStack = inventory.get(i);
-            if(itemStack.getItem() instanceof ItemElement) {
-                recipe.set(i, FormulaSerializer.serialize(new ArrayList<>(Collections.singletonList(itemStack))));
+        if(world.isClient) return;
+        System.out.println(checkMultiBlock());
+        if (this.energy >= 150000 && this.inventory.get(0) != null && this.inventory.get(0) != ItemStack.EMPTY && this.inventory.get(1) != null && this.inventory.get(1) != ItemStack.EMPTY){
+            Item result = Elements.getFromNumber(((ItemElement)this.inventory.get(0).getItem()).getAtomicNumber() + ((ItemElement)this.inventory.get(1).getItem()).getAtomicNumber());
+            if (result != null) {
+                if (checkMultiBlock() && ((this.inventory.get(2).getItem() == result && this.inventory.get(2).getCount() < 64) || (this.inventory.get(2) == ItemStack.EMPTY || this.inventory.get(2) == null))) {
+                    this.useEnergy(150000);
+                    this.inventory.set(0, ItemStack.EMPTY);
+                    this.inventory.set(1, ItemStack.EMPTY);
+                    if(inventory.get(2) == null || inventory.get(2) == ItemStack.EMPTY){
+                        this.inventory.set(2, new ItemStack(result));
+                    } else {
+                        this.inventory.set(2, new ItemStack(result, this.inventory.get(2).getCount()+1));
+                    }
+                }
             }
         }
-        ArrayList<String> current = new ArrayList<>();
-        for(String s : recipe){
-            if(s.equals("")) {
-                current.add(null);
-            } else {
-                current.add(s);
-            }
-        }
-        Item result = ChemicalComposition.getItemFromRecipe(current);
-        this.inventory.set(9, new ItemStack(result));
     }
 
     @Override
     public int[] getAvailableSlots(Direction side) {
-        return new int[0];
+        if (side == Direction.UP) {
+            return new int[]{0, 1};
+        }
+
+        return new int[]{2};
+
     }
 
     @Override
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
-        return dir == Direction.UP;
+        return (this.inventory.get(slot) == null || this.inventory.get(slot) == ItemStack.EMPTY) && dir == Direction.UP;
     }
 
     @Override
@@ -295,17 +401,17 @@ public class BlockEntitySynthesizer extends BlockEntity implements NamedScreenHa
 
     @Override
     public double getMaxStoredPower() {
-        return 4000;
+        return 6000000;
     }
 
     @Override
     public EnergyTier getTier() {
-        return EnergyTier.MEDIUM;
+        return EnergyTier.EXTREME;
     }
 
     @Override
     public double getMaxInput(EnergySide side) {
-        return 128;
+        return 200000;
     }
 
     @Override

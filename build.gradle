@@ -33,6 +33,7 @@ dependencies {
 	include 'teamreborn:energy:0.1.0'
 	modApi 'RebornCore:RebornCore-1.16:4.5.0+build.86'
 	include 'RebornCore:RebornCore-1.16:4.5.0+build.86'
+	modCompile "alexiil.mc.lib:libmultipart-all:0.3.4"
 }
 
 processResources {

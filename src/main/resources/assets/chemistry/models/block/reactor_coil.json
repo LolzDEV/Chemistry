@@ -1,0 +1,11 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"up": "chemistry:block/reactor_coil",
+		"down": "chemistry:block/reactor_coil",
+		"north": "chemistry:block/reactor_coil_side",
+		"south": "chemistry:block/reactor_coil_side",
+		"east": "chemistry:block/reactor_coil_side",
+		"west": "chemistry:block/reactor_coil_side"
+	}
+}

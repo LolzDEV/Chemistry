@@ -1,6 +1,8 @@
 package com.chemistry.items;
 
+import com.chemistry.api.ItemCompound;
 import com.chemistry.api.ItemElement;
+import com.chemistry.compounds.Compounds;
 import com.chemistry.elements.Elements;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
@@ -13,6 +15,7 @@ import java.util.Map;
 public class Items {
 
     public static HashMap<String, Item> chemistry_elements = new HashMap<>();
+    public static HashMap<String, Item> chemistry_compounds = new HashMap<>();
 
     public static final Item TUBE = new Item(new FabricItemSettings().group(ItemGroups.CHEMISTRY_ITEMS));
 
@@ -23,6 +26,12 @@ public class Items {
             Registry.register(Registry.ITEM, new Identifier("chemistry", entry.getKey()), entry.getValue());
             chemistry_elements.put("item/" + entry.getKey(), entry.getValue());
         }
+
+        for(Map.Entry<String, ItemCompound> entry : Compounds.compounds.entrySet()){
+            Registry.register(Registry.ITEM, new Identifier("chemistry", entry.getKey()), entry.getValue());
+            chemistry_compounds.put("item/" + entry.getKey(), entry.getValue());
+        }
+
     }
 
 }

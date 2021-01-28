@@ -10,11 +10,13 @@ public class BlockEntities {
     public static BlockEntityType<BlockEntityDecomposer> BLOCK_ENTITY_DECOMPOSER;
     public static BlockEntityType<BlockEntitySynthesizer> BLOCK_ENTITY_SYNTHESIZER;
     public static BlockEntityType<BlockEntityMicroscope> BLOCK_ENTITY_MICROSCOPE;
+    public static BlockEntityType<BlockEntityReactor> BLOCK_ENTITY_REACTOR;
 
     public static void registerBlockEntities(){
         BLOCK_ENTITY_DECOMPOSER = Registry.register(Registry.BLOCK_ENTITY_TYPE, "chemistry:blockentitydecomposer", BlockEntityType.Builder.create(BlockEntityDecomposer::new, Blocks.DECOMPOSER).build(null));
         BLOCK_ENTITY_SYNTHESIZER = Registry.register(Registry.BLOCK_ENTITY_TYPE, "chemistry:blockentitysynthesizer", BlockEntityType.Builder.create(BlockEntitySynthesizer::new, Blocks.SYNTHESIZER).build(null));
         BLOCK_ENTITY_MICROSCOPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, "chemistry:blockentitymicroscope", BlockEntityType.Builder.create(BlockEntityMicroscope::new, Blocks.MICROSCOPE).build(null));
+        BLOCK_ENTITY_REACTOR = Registry.register(Registry.BLOCK_ENTITY_TYPE, "chemistry:blockentityreactor", BlockEntityType.Builder.create(BlockEntityReactor::new, Blocks.REACTOR).build(null));
     }
 
 }
